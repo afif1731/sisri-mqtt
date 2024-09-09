@@ -1,0 +1,25 @@
+{
+  "name": "sisri-mqtt-sub",
+  "version": "1.0.0",
+  "description": "an mqtt subscriber",
+  "main": "index.ts",
+  "repository": "https://github.com/afif1731/sisri-mqtt.git",
+  "author": "go gangster",
+  "scripts": {
+    "build": "npx tsc src/index.ts",
+    "start:dev": "dotenv -e .env.development -- npx tsx src/index.ts",
+    "start": "dotenv -e .env.poduction -- node dist/index.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "mqtt": "^5.10.1"
+  }
+}
