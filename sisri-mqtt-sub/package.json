@@ -6,7 +6,7 @@
   "repository": "https://github.com/afif1731/sisri-mqtt.git",
   "author": "go gangster",
   "scripts": {
-    "build": "npx tsc index.ts",
+    "build": "npx tsc src/index.ts",
     "start:dev": "dotenv -e .env.development -- npx tsx src/index.ts",
     "start": "dotenv -e .env.poduction -- node dist/index.js"
   },

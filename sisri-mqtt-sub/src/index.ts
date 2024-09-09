@@ -3,9 +3,8 @@ import client from './config/mqtt.config';
 import { IAirQualityBodyRequest, IAirQualityResponse } from './model/air-quality.model';
 import axios from 'axios';
 
-client.on('message', (topic, message) => {
+client.on('message', async(topic, message) => {
     try {
-        console.log(`message found on id ${topic.split('/')[3]}`);
         const airQualityMsg: IAirQualityResponse = JSON.parse(message.toString());
         const ispuResults = {
             //PM10: calculateISPU(airQualityMsg.pm10, 'PM10'),
@@ -33,9 +32,13 @@ client.on('message', (topic, message) => {
             aqi: Math.floor(aqi ?? 999)
         }
 
-        axios.patch(url, requestData);
-        console.log('sended..');
+        try {
+            await axios.patch(url, requestData);
+            console.log('sended..');
+        } catch(error: any) {
+            console.error('error sanding data: ', error.message);
+        }
     } catch(error: any) {
-        console.log(`error catch: ${error}`);
+        console.error('error catch: ', error.message);
     }
 })
